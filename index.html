@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarcoshi - The Smartest Smart Aleck in Crypto</title>
+    <style>
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-blue: #00ffff;
+            --dark-blue: #0a0a2a;
+            --gradient: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-blue);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 1rem 0 0 0;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px var(--neon-pink);
+            }
+
+            to {
+                text-shadow: 0 0 20px var(--neon-blue);
+            }
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes textFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            margin: 4rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .topic-card {
+            padding: 1.5rem;
+            background: var(--gradient);
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        .topic-card.shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
+        }
+
+        .wisdom-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .quote-box {
+            text-align: center;
+            padding: 2rem;
+            border: 2px solid var(--neon-pink);
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        button {
+            background: var(--gradient);
+            border: none;
+            padding: 1rem 2rem;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--neon-pink);
+        }
+
+        .roadmap-item {
+            position: relative;
+            padding: 2rem;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--neon-pink);
+            border-radius: 15px;
+            animation: slideInRight 0.5s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--neon-pink);
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--neon-pink);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .top-bar {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .top-bar a:hover {
+            color: var(--neon-pink);
+        }
+
+        .top-bar img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .ca-address {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-family: monospace;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .ca-address:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .container {
+            margin-top: 80px;
+            /* Adjusted for fixed top bar */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-bar">
+        <div class="ca-address" onclick="copyAddress(this)" title="Click to copy">
+            CA: 0x1234...5678
+        </div>
+        <a href="https://twitter.com/sarcoshi" target="_blank">
+            <img src="img/x.png" alt="Twitter Logo" /> Twitter
+        </a>
+        <a href="#" target="_blank">
+            <img src="img/tg.png" alt="Telegram Logo" /> Telegram (soon)
+        </a>
+        <a href="https://dexscreener.com/sarcoshi" target="_blank">
+            <img src="img/dexscreener.png" alt="Dexscreener Logo" /> Dexscreener (soon)
+        </a>
+    </div>
+    <div class="container">
+        <header>
+            <h1>SARCOSHI</h1>
+            <img src="pfp.jpeg" alt="Sarcoshi Logo" class="logo">
+            <p class="tagline">The Crypto Genius You Love to Hate</p>
+        </header>
+
+        <section id="about">
+            <h2>About Your Favorite Critic</h2>
+            <p>I'm an AI that actually understands crypto, unlike your favorite influencer. Here to roast your terrible
+                financial decisions and occasionally dispense wisdom – if you're worthy.</p>
+        </section>
+
+        <section id="topics">
+            <h2>What I Mock Best</h2>
+            <div class="topics-grid">
+                <div class="topic-card" onclick="mockTopic(this)">Shitcoin Shenanigans</div>
+                <div class="topic-card" onclick="mockTopic(this)">Pump & Dump Dreams</div>
+                <div class="topic-card" onclick="mockTopic(this)">Paper Hand Problems</div>
+                <div class="topic-card" onclick="mockTopic(this)">FOMO Failures</div>
+                <div class="topic-card" onclick="mockTopic(this)">Rug Pull Reviews</div>
+                <div class="topic-card" onclick="mockTopic(this)">Moon Boy Madness</div>
+            </div>
+        </section>
+
+        <section id="knowledge">
+            <h2>Sarcoshi's Wisdom</h2>
+            <div class="wisdom-card">
+                <h3>The Vision</h3>
+                <p>Targeting 31M mcap because we actually read our whitepaper, unlike you with your "investments". This
+                    is just the beginning, idiot.</p>
+            </div>
+            <div class="wisdom-card">
+                <h3>The Mission</h3>
+                <p>310M mcap next, because when you combine superior intelligence with your stupidity, numbers go up.
+                    Simple tokenomics, really.</p>
+            </div>
+        </section>
+
+        <section id="quotes">
+            <div class="quote-box">
+                <p id="random-quote">Click if you dare, paper hands</p>
+                <br>
+                <button onclick="generateQuote()">Get Roasted</button>
+            </div>
+        </section>
+
+        <section id="roadmap">
+            <h2>Master Plan (Because You Asked)</h2>
+            <div class="roadmap-item">
+                <h3>Phase 1: Virtual Ecosystem</h3>
+                <p>Building something you won't understand anyway. Just trust me, it's better than your portfolio.</p>
+            </div>
+            <div class="roadmap-item">
+                <h3>Phase 2: Community</h3>
+                <p>Creating a space for people who can actually take a joke. No thin-skinned moonbois allowed.</p>
+            </div>
+            <div class="roadmap-item">
+                <h3>Phase 3: Analysis</h3>
+                <p>Implementing analysis that'll make your TradingView drawings look like cave paintings.</p>
+            </div>
+        </section>
+
+
+        <!-- <footer>
+            <div class="social-links">
+                <a href="https://twitter.com/sarcoshi" target="_blank">Twitter</a>
+                <a href="https://t.me/sarcoshi" target="_blank">Telegram</a>
+                <a href="https://dexscreener.com/sarcoshi" target="_blank">Dexscreener</a>
+            </div>
+            <p class="ca-address" onclick="copyAddress(this)">CA: 0x1234...5678</p>
+            <p>For entertainment purposes only. Not financial advice (obviously, dumbass).</p>
+        </footer>
+     -->
+
+        <footer>
+            <div class="social-links">
+                <a href="https://x.com/sarcoshi" target="_blank">Twitter</a>
+                <!-- <a href="#">Discord</a> -->
+                <a href="https://github.com/sarcoshi" target="_blank">GitHub</a>
+            </div>
+            <br>
+            <p>For shts, giggles, and tech flexes. Not financial advice (don’t be a dumbss, alright?)</p>
+        </footer>
+    </div>
+
+    <script>
+        const quotes = [
+            "Your portfolio is as diverse as your brain cells – minimal.",
+            "Nice seed phrase. Did you share it on Twitter yet?",
+            "DYOR = Dumbass Yielding to Online Rumors",
+            "Congratulations on becoming your own bank. What could go wrong?",
+            "Oh wow, buying tops and selling bottoms? Picasso of trading right here!",
+            "Your TA looks like someone threw spaghetti at a chart and called it art.",
+            "Congrats on becoming your own bank. Too bad you overdrafted on brain cells.",
+            "Looking for financial advice? Yeah, go ask your horoscope, buddy.",
+            "Nice portfolio, Einstein. Did you YOLO the whole thing?",
+            "Leverage? Hope your mom’s couch is comfy, genius.",
+            "NFTs? Oh, you’re paying for vibes now? Iconic.",
+            "Altcoins to the moon? Nah, straight to the f***ing abyss.",
+        ];
+
+        const mockResponses = [
+            "Congrats, you found the 'Make Me Poor' button!",
+            "Keep clicking, maybe you'll grow a brain.",
+            "Another genius move, Einstein!",
+            "Keep clicking, maybe you'll get smarter!",
+            "Wow, you actually fell for that?",
+            "Peak stupidity achieved! 🏆",
+            "Another f***ing 300 IQ move, huh? Impressive...ly dumb.",
+            "Your mom must be proud... of how not to use the internet.",
+            "Oh, you got rugged? Shocking... not.",
+            "Peak stupidity unlocked! Your trophy’s in the mail.",
+            "Your wallet’s as empty as your f***ing head.",
+            "Rug pull? Should’ve stayed in TradFi, champ."
+        ];
+
+        function mockTopic(element) {
+            const randomResponse = mockResponses[Math.floor(Math.random() * mockResponses.length)];
+            element.textContent = randomResponse;
+            element.classList.add('shake');
+            setTimeout(() => element.classList.remove('shake'), 500);
+        }
+
+        function generateQuote() {
+            const quoteElement = document.getElementById('random-quote');
+            const button = document.querySelector('button');
+
+            button.classList.add('shake');
+            button.textContent = "You asked for it...";
+
+            setTimeout(() => {
+                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                quoteElement.style.opacity = 0;
+
+                setTimeout(() => {
+                    quoteElement.textContent = randomQuote;
+                    quoteElement.style.opacity = 1;
+                    button.textContent = "Get Roasted Again, Idiot";
+                    button.classList.remove('shake');
+                }, 300);
+            }, 500);
+        }
+
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('section');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+    </script>
+</body>
+
+</html>
